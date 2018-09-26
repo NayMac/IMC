@@ -3,6 +3,7 @@ package macias.silva.naye.imc
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,9 @@ class MainActivity : AppCompatActivity() {
                 val peso = etPeso.text.toString().toFloat()
                 val altura = etAltura.text.toString().toFloat()
                 val imc = calculaIMC(peso,altura)
+                Log.d("peso", peso.toString())
+                Log.d("altura", altura.toString())
+                Log.d("imc", imc.toString())
 
                 val i = Intent(this,resultActivity::class.java)
                 i.putExtra("imc",imc)
@@ -29,8 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    fun calculaIMC(peso:Float,altura:Float):Float{
-
-    return peso/(altura*altura)
+    fun calculaIMC(peso:Float,altura:Float): Float{
+        return peso/(altura*altura)
     }
 }

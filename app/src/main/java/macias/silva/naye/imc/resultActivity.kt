@@ -2,7 +2,8 @@ package macias.silva.naye.imc
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.squareup.picasso.Picasso
+import android.util.Log
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_result.*
 
 class resultActivity : AppCompatActivity() {
@@ -18,24 +19,25 @@ class resultActivity : AppCompatActivity() {
     }
 
     fun interpretaIMC(imc:Float){
-        var rutaFoto = "url"
-        var resultado = "no se"
+        var rutaFoto = ""
         when {
             imc <= 18.4 -> {
                 //bajo
-                rutaFoto = "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj72JzmkMjdAhVQbKwKHcEBBFcQjRx6BAgBEAU&url=http%3A%2F%2Fmisionesonline.net%2F2017%2F09%2F15%2Fpeso-mejorar-la-alimentacion-quienes-deben-aumentar-peso-saludablemente%2F&psig=AOvVaw0GuOhSM-ulnwkyt99vV02f&ust=1537483037075541"
-
+                rutaFoto = "https://static0.misionesonline.net/wp-content/uploads/2017/09/bajo-peso-61i7f7jofk70.jpg"
+                tvResultado.text = "bajo"
             }
             imc in 18.4..24.9 -> {
                 //normal
-                rutaFoto = "https://es.dreamstime.com/stock-de-ilustraci%C3%B3n-personaje-de-dibujos-animados-juguet%C3%B3n-muchacho-con-el-peso-normal-ejemplo-aislado-del-vector-en-el-fondo-blanco-image79246741"
-            }
+                rutaFoto = "https://thumbs.dreamstime.com/z/personaje-de-dibujos-animados-juguet%C3%B3n-muchacho-con-el-peso-normal-ejemplo-aislado-del-vector-en-el-fondo-blanco-79246741.jpg"
+                tvResultado.text = "normal"
+        }
             imc >=  25 -> {
-                rutaFoto = "https://saludmovil.com/es/deja-de-hacer-sentir-mal-a-los-ninos-con-sobrepeso-empeora-las-cosas/"
+                rutaFoto = "https://saludmovil.com/wp-content/uploads/2018/01/Stop-Shaming-Overweight-Kids-It-Makes-Things-Worse-MainPhoto.jpg"
+                tvResultado.text = "sobrepeso"
                 //sobrepeso
             }
         }
-        Picasso.get().load(rutaFoto).into(ivResultado)
-        tvResultado.text = resultado
+        Log.d("img", rutaFoto)
+        Glide.with(this).load(rutaFoto).into(res)
     }
 }
